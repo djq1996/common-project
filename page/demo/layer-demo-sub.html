@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<style type="text/css">
+			body {
+				padding: 30px;
+			}
+			
+			button {
+				background: #01AAED;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app" style="display: none;">
+			这里是自定义内容 随意玩
+		</div>
+
+		<h2>LayerDemo演示    ( 引入公用js jquery layer common /js )</h2><br/> <br/> Alter
+		
+		<button onclick="Layer.showAlert('有问题了啊');">警告</button>
+		
+		<button onclick="Layer.showSucAlert();">操作成功提示框</button>
+		
+		<button onclick="Layer.showFailAlert();">操作失败提示框</button>
+		
+		<button onclick="Layer.showSucAlert('我成功了',showCall);">操作成功提示框+自定义内容+回调方法</button>
+		
+		<button onclick="Layer.showFailAlert('我失败了',0);">操作失败提示框+自定义内容+不自动关闭</button>
+		
+		<br/> <br/> OpenDialog (content-url)
+		
+		<button onclick="Layer.openDialog('我是Open 的url窗口','http://baidu.com');">iframe层</button>
+		
+		<button onclick="Layer.openDialog('我是Open 的url窗口','http://baidu.com',400);">iframe层+自定义宽</button>
+		
+		<button onclick="Layer.openDialog('我是Open 的url窗口','http://baidu.com',500,500);">iframe层+自定义宽高</button>
+		
+		<br/> <br/> OpenDom (content-dom)
+		
+		<button onclick="Layer.openDom('我是Open 的dom窗口','可以是字符串，或者dom  或者$(dom)');">iframe层</button>
+		
+		<button onclick="Layer.openDom('我是Open 的dom窗口','http://baidu.com',400);">iframe层+自定义宽</button>
+		
+		<button onclick="Layer.openDom('我是Open 的dom窗口','http://baidu.com',500,500);">iframe层+自定义宽高</button>
+		
+		<br/><br/> Message
+		
+		<button onclick="Layer.showMsg('我只是简单的提示一下');">对话框</button>
+		
+		<button onclick="Layer.showSucMsg('我是成功的提示框')">成功的提示框</button>
+		
+		<br/> <br/> Confirm
+		
+		<button onclick="var a = Layer.showConfirm('你确定要这样操作吗',function(){Layer.showMsg('我只是简单的提示一下你选择了确定')});">Confirm对话框</button>
+		
+		<br/> <br/> 加载loading
+		
+		<button id="DJQ" >loading 默认2秒关闭  可设置 不关闭</button>
+
+		<script type="text/javascript" src="../../lib/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="../../lib/layer/layer.min.js"></script>
+		<script type="text/javascript" src="../../js/commo.js"></script>
+		<script type="text/javascript">
+			/*打开等待狂  选择不自动关闭，设置定时器  可以加载ajax 完毕后关闭*/
+			$("#DJQ").click(function(){
+				var a = Layer.showLoading('玩命加载...',0,showCall);
+				/*模拟加载  ajax  1.5秒*/
+				setTimeout(function(){
+					Layer.closeLayer(a);
+				},1500)
+			});
+			function showCall(index) {
+				alert("我是回调奥" + index);
+				Layer.closeLayer(index);
+			}
+			//			console.log(Layer.getCurrentWin())
+		</script>
+
+	</body>
+
+</html>
