@@ -44,7 +44,8 @@
 		
 		<br/> <br/> OpenDom (content-dom)
 		
-		<button onclick="Layer.openDom('我是Open 的dom窗口','可以是字符串，或者dom  或者$(dom)');">iframe层</button>
+		<button onclick="Layer.openDom('我是Open 的dom窗口','可以是字符串，或者dom  或者$(dom)');">页面层</button>
+		<button id="djqs" >弹出页面div</button>
 		
 		<button onclick="Layer.openDom('我是Open 的dom窗口','http://baidu.com',400);">iframe层+自定义宽</button>
 		
@@ -63,6 +64,9 @@
 		<br/> <br/> 加载loading
 		
 		<button id="DJQ" >loading 默认2秒关闭  可设置 不关闭</button>
+			
+		<br/> <br/>
+
 
 		<script type="text/javascript" src="../../lib/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="../../lib/layer/layer.min.js"></script>
@@ -71,6 +75,8 @@
 			/*打开等待狂  选择不自动关闭，设置定时器  可以加载ajax 完毕后关闭*/
 			$("#DJQ").click(function(){
 				var a = Layer.showLoading('玩命加载...',0,showCall);
+				
+				console.log(a);
 				/*模拟加载  ajax  1.5秒*/
 				setTimeout(function(){
 					Layer.closeLayer(a);
@@ -80,6 +86,9 @@
 				alert("我是回调奥" + index);
 				Layer.closeLayer(index);
 			}
+			$("#djqs").click(function(){
+				Layer.openDom('我是Open 的dom窗口',$("#app"))
+			})
 			//			console.log(Layer.getCurrentWin())
 		</script>
 

@@ -1,3 +1,30 @@
+/**
+	 * 面向对象--选项卡
+	 * @param {} id(string)     元素 类名  ID名字
+	 * 调用方法   new Tab('.box');
+*/
+function Tab(id){
+	var tabBox = document.querySelector(id)
+	this.btn = tabBox.querySelectorAll('.itemBtn li');
+	this.conBox = tabBox.querySelectorAll('.itemBox > div');
+	for(var i=0;i<this.btn.length;i++){
+		this.btn[i].index = i;
+		var _this = this;
+		this.btn[i].onclick = function(){
+			_this.btnclick(this);
+		};
+	};
+}
+Tab.prototype.btnclick = function (btn){
+	for(var j=0;j<this.conBox.length;j++){
+		this.btn[j].className='';
+		this.conBox[j].style.display = 'none'
+	}
+	btn.className ='active';
+	this.conBox[btn.index].style.display = 'block'
+}
+
+
 /*layer 封装*/
 
 function Layer() {};
